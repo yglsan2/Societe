@@ -1,31 +1,19 @@
+
 package com.benja2.entites.Utilitaires;
 
 public enum ImmuInteresse {
 
-    // voir pour javadoc
-    /* Enumération qui permet de lister les intéressés.
-     */
+    // Enumération des intéressés
+    INTERESSE,
+    NON_INTERESSE;
 
-        INTERESSE(),
-        NON_INTERESSE();
+    @Override
+    public String toString() {
 
-        private String label;
+        return super.toString().toLowerCase(); // renvoie le résultat avec minuscules.
 
-        // Constructeur de l'énumération
-        void Interesse(String label) {
-            this.label = label;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-
-        @Override
-        public String toString() {
-            return label;
-        }
     }
-
+}
 
 
 
