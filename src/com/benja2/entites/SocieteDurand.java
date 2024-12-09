@@ -1,5 +1,4 @@
 package com.benja2.entites;
-import com.benja2.entites.SocieteDurand.*;
 
 public abstract class SocieteDurand {
 
@@ -19,12 +18,6 @@ public abstract class SocieteDurand {
         this.telephone = telephone;
         this.email = email;
         this.commentaires = commentaires;
-    }
-
-    public SocieteDurand(String numeroRue, String nomRue, String codePostal, String ville, String raisonSociale, String telephone, String email, String commentaires) {
-    }
-
-    public SocieteDurand(Adresse adresse, String raisonSociale, String telephone, String email, String commentaires) {
     }
 
 
