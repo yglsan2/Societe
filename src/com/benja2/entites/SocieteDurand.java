@@ -1,4 +1,4 @@
-package com.benja2.ProjetSociete1;
+package com.benja2.entites;
 
 public abstract class SocieteDurand {
 

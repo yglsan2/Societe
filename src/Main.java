@@ -1,6 +1,5 @@
-import com.benja2.ProjetSociete1.Adresse;
-import com.benja2.ProjetSociete1.Prospect;
-import com.benja2.ProjetSociete1.Client;
+import com.benja2.entites.Adresse;
+import com.benja2.entites.Client;
 
 public class Main {
     public static void main(String[] args) {
