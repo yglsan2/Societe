@@ -1,5 +1,7 @@
 package com.benja2.entites;
 
+import java.util.regex.Pattern;
+
 public class Adresse {
     private String numeroRue;
     private String nomRue;
@@ -8,6 +10,9 @@ public class Adresse {
 
     // Constructeur
     public Adresse(String numeroRue, String nomRue, String codePostal, String ville) {
+
+        if (!Pattern.matches("\d{5}", codePostal))throw new IllegalArgumentException("code postal invalide");
+
         this.numeroRue = numeroRue;
         this.nomRue = nomRue;
         this.codePostal = codePostal;

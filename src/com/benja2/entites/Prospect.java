@@ -1,11 +1,11 @@
 package com.benja2.entites;
 
-import com.benja2.entites.SocieteDurand;
+import com.benja2.entites.Utilitaires.ImmuInteresse;
 
 import java.time.LocalDate;
 
 
-public class Prospect extends SocieteDurand {
+public class Prospect extends Societe {
 
     private LocalDate dateProspection;
     private String interesse;
@@ -21,6 +21,10 @@ public class Prospect extends SocieteDurand {
 
         this.dateProspection = dateProspection;
         this.interesse = interesse;
+    }
+
+    public Prospect(String prospectLoP, Adresse adresse, String number, String mail, String raisonSociale, LocalDate of, ImmuInteresse immuInteresse) {
+        super();
     }
 
     public LocalDate getDateProspection() {

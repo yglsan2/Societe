@@ -1,11 +1,11 @@
 package com.benja2.entites;
 
 
-public class Client extends SocieteDurand {
-    private long chiffreAffaires;
-    private int nombreEmployes;
+public class Client extends Societe {
+    private final long chiffreAffaires;
+    private final int nombreEmployes;
 
-    public Client(Adresse adresse, String raisonSociale, String telephone, String email, String commentaires, long chiffreAffaires, int nombreEmployes) {
+    public Client(String adresse, String raisonSociale, String telephone, String email, String commentaires, long chiffreAffaires, int nombreEmployes) {
              super(adresse, raisonSociale, telephone, email, commentaires);
 
 
@@ -26,6 +26,8 @@ public class Client extends SocieteDurand {
         this.nombreEmployes = nombreEmployes;
     }
 
+
+
     // Getters
     public long getChiffreAffaires() {
         return chiffreAffaires;
@@ -43,6 +45,15 @@ public class Client extends SocieteDurand {
     @Override
     public void afficher() {
         System.out.println(this.toString());
+        System.out.println("Identifiant : " + getIdentifiant());
+        System.out.println("Raison Sociale : " + getRaisonSociale());
+        System.out.println("Adresse : " + getAdresse());
+        System.out.println("Téléphone : " + getTelephone());
+        System.out.println("Email : " + getEmail());
+        System.out.println("Commentaires : " + getCommentaires());
     }
 }
+
+
+
 // 2 pb

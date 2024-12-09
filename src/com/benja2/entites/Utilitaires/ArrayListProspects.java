@@ -1,11 +1,12 @@
 package com.benja2.entites.Utilitaires;
-import com.benja2.entites.SocieteDurand;
+import com.benja2.entites.Societe;
+
 
 import java.time.LocalDate;
 public class ArrayListProspects {
 
 
-    public static class Prospect extends SocieteDurand {
+    public  class Prospect extends Societe {
         private LocalDate dateProspection;
         private final String interesse;
 

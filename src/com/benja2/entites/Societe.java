@@ -1,8 +1,13 @@
+
 package com.benja2.entites;
 
-public abstract class SocieteDurand {
+
+
+
+abstract class Societe {
 
     //Attributs
+    private static int compteurId = 1;
     private int identifiant;
     private String raisonSociale;
     private Adresse adresse; // adresse de type Adresse
@@ -11,7 +16,8 @@ public abstract class SocieteDurand {
     private String commentaires;
 
     // Constructeur
-    public SocieteDurand(int identifiant, String raisonSociale, Adresse adresse, String telephone, String email, String commentaires) {
+    public Societe(int identifiant, String raisonSociale, Adresse adresse, String telephone, String email, String commentaires) {
+        this.compteurId = compteurId++; //compteur qui ajoute 1 à chaque fois
         this.identifiant = identifiant;
         this.raisonSociale = raisonSociale;
         this.adresse = adresse;
@@ -20,13 +26,18 @@ public abstract class SocieteDurand {
         this.commentaires = commentaires;
 
 
-        ///  !! le téléphone, l'email et le code postal devront être définis par un regex, le code postal devant obligatoirement avoir 5 chiffres (CF exceptions à lever)
+
+        //  !! le téléphone, l'email et le code postal devront être définis par un regex, le code postal devant obligatoirement avoir 5 chiffres (CF exceptions à lever)
     }
 
-    public SocieteDurand(Adresse adresse, String raisonSociale, String telephone, String email, String commentaires) {
+    public Societe(String adresse, String raisonSociale, String telephone, String email, String commentaires) {
     }
 
-    public SocieteDurand(String numeroRue, String nomRue, String codePostal, String ville, String raisonSociale, String telephone, String email, String commentaires) {
+    public Societe(String numeroRue, String nomRue, String codePostal, String ville, String raisonSociale, String telephone, String email, String commentaires) {
+    }
+
+    public Societe() {
+
     }
 
 
