@@ -1,10 +1,10 @@
 package com.benja2.ProjetSociete1;
 
-
+import com.benja2.entites.SocieteDurand;
 
 public class Client extends SocieteDurand {
-    private long chiffreAffaires;
-    private int nombreEmployes;
+    private final long chiffreAffaires;
+    private final int nombreEmployes;
 
     public Client(Adresse adresse, String raisonSociale, String telephone, String email, String commentaires, long chiffreAffaires, int nombreEmployes) {
              super(adresse, raisonSociale, telephone, email, commentaires);
