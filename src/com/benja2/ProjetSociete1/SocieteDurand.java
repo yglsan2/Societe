@@ -5,7 +5,7 @@ public abstract class SocieteDurand {
     //Attributs
     private int identifiant;
     private String raisonSociale;
-    private Adresse adresse;
+    private Adresse adresse; // adresse de type Adresse
     private String telephone;
     private String email;
     private String commentaires;
@@ -19,6 +19,7 @@ public abstract class SocieteDurand {
         this.email = email;
         this.commentaires = commentaires;
     }
+
 
     // Getters et Setters
     public int getIdentifiant() {
@@ -70,8 +71,9 @@ public abstract class SocieteDurand {
     }
 
     // Méthode abstraite
-    public abstract void afficherDetails();
+    public abstract void afficher();
 }
+
 
 
 
