@@ -8,6 +8,13 @@ public class Client extends SocieteDurand {
     public Client(Adresse adresse, String raisonSociale, String telephone, String email, String commentaires, long chiffreAffaires, int nombreEmployes) {
              super(adresse, raisonSociale, telephone, email, commentaires);
 
+
+
+             // A faire :
+        // les logs
+        //  les exceptions
+        //  les tests unitaires
+
                   if (chiffreAffaires <= 200) {
             throw new IllegalArgumentException("Le chiffre d'affaires doit être supérieur à 200.");
         }

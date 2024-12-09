@@ -1,5 +1,7 @@
 import com.benja2.entites.Adresse;
 import com.benja2.entites.Client;
+import com.benja2.entites.Prospect;
+
 
 public class Main {
     public static void main(String[] args) {
