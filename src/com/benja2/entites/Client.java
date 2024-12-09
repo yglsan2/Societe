@@ -10,7 +10,8 @@ public class Client extends SocieteDurand {
 
 
 
-             // A faire :
+
+             // À faire :
         // les logs
         //  les exceptions
         //  les tests unitaires

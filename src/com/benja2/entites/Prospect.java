@@ -1,5 +1,7 @@
 package com.benja2.entites;
+
 import com.benja2.entites.SocieteDurand;
+
 import java.time.LocalDate;
 
 
