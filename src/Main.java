@@ -1,4 +1,7 @@
 
+
+
+
 import com.benja2.entites.Adresse;
 import com.benja2.entites.Client;
 import com.benja2.entites.Prospect;
@@ -11,36 +14,70 @@ public class Main {
         // Création d'une adresse
         Adresse adresse = new Adresse("32", "Rue des Lilas", "54000", "Nancy");
 
-
         // Création d'un client
+        String clientNom = "Lorraine";
+        String clientRaisonSociale = "PathéLorraine";
+        String clientTelephone = "0678905634";
+        String clientEmail = "java@gmail.com";
+        String clientCommentaire = "Aucun commentaire";
+        int clientChiffreAffaires = 1034;
+        int clientNombreEmployes = 100;
+
         Client client = new Client(
-                "Lorraine",
-                "PathéLorraine",
-                "0678905634",
-                "java@gmail.com",
-                "Aucun commentaire",
-                1034,
-                100 );
+                clientNom,
+                clientRaisonSociale,
+                clientTelephone,
+                clientEmail,
+                clientCommentaire,
+                clientChiffreAffaires,
+                clientNombreEmployes
+        );
         client.setAdresse(adresse);
 
-        Adresse prospectAdresse = new Adresse("32", "Rue du TrucBidule", "54000", "Nancy");
+        // Création d'une adresse Prospect
+        Adresse prospectAdresse = new Adresse("56", "Rue du TrucBidule", "54000", "Nancy");
 
-// Création de l'objet prospectAdresse, qu'on va passer plus bas, dans le constructeur.
+        // Création des variables pour le prospect
+        String prospectRaisonSociale = "Quiche Chez DuDu";
+        String prospectTelephone = "0678905644";
+        String prospectEmail = "prospect@gmail.com";
+        String prospectCommentaire = "Commentaire prospect";
 
+        // Création de l'objet Prospect
         Prospect prospect = new Prospect(
-                "Quiche Chez DuDu",
-                prospectAdresse, // ici, on passe l'objet prospectAdresse créée, façon "parse' sans utiliser de parse
-                "0678901234",
-                "prospect@gmail.com",
-                "Commentaire prospect",
-                LocalDate.now(),
-                ImmuInteresse.OUI );
+                prospectRaisonSociale,
+                prospectAdresse,
+                prospectTelephone,
+                prospectEmail,
+                prospectCommentaire,
 
+                LocalDate.now(),
+                ImmuInteresse.OUI
+        );
 
         // Affichage des objets
         client.afficher();
         prospect.afficher();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

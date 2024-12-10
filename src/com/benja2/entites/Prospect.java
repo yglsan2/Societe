@@ -1,8 +1,5 @@
-
 package com.benja2.entites;
-
 import com.benja2.entites.Utilitaires.ImmuInteresse;
-
 import java.time.LocalDate;
 
 public class Prospect extends Societe {
@@ -50,12 +47,11 @@ public class Prospect extends Societe {
         return new Adresse(rueParts[0], rueParts[1], codeVilleParts[0], codeVilleParts[1]);
     }
 
-    // Constructeur surchargé avec adresse détaillée
+    // Constructeur surchargé avec Adresse
     public Prospect(String numeroRue, String nomRue, String codePostal, String ville, String raisonSociale,
                     String telephone, String email, String commentaires, LocalDate dateProspection,
                     ImmuInteresse interesse) {
-        this(
-                raisonSociale,
+        this(   raisonSociale,
                 new Adresse(numeroRue, nomRue, codePostal, ville),
                 telephone,
                 email,
