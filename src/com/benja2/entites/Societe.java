@@ -1,53 +1,40 @@
 
 package com.benja2.entites;
 
+public abstract class Societe {
 
-
-
-abstract class Societe {
-
-    //Attributs
+    // Attributs
     private static int compteurId = 1;
-    private int identifiant;
+    private final int identifiant;
     private String raisonSociale;
-    private Adresse adresse; // adresse de type Adresse
+    private Adresse adresse;
     private String telephone;
     private String email;
     private String commentaires;
 
-    // Constructeur
-    public Societe(int identifiant, String raisonSociale, Adresse adresse, String telephone, String email, String commentaires) {
-        this.compteurId = compteurId++; //compteur qui ajoute 1 à chaque fois
-        this.identifiant = identifiant;
+    // Constructeur par défaut
+    public Societe() {
+        this.identifiant = compteurId++;
+        this.raisonSociale = "Raison sociale non définie";
+        this.adresse = null; // Une adresse par défaut pourrait aussi être ajoutée
+        this.telephone = "Non défini";
+        this.email = "Non défini";
+        this.commentaires = "";
+    }
+
+    // Constructeur avec paramètres
+    public Societe(String raisonSociale, Adresse adresse, String telephone, String email, String commentaires) {
+        this.identifiant = compteurId++;
         this.raisonSociale = raisonSociale;
         this.adresse = adresse;
-        this.telephone = telephone;
-        this.email = email;
+        setTelephone(telephone);
+        setEmail(email);
         this.commentaires = commentaires;
-
-
-
-        //  !! le téléphone, l'email et le code postal devront être définis par un regex, le code postal devant obligatoirement avoir 5 chiffres (CF exceptions à lever)
     }
-
-    public Societe(String adresse, String raisonSociale, String telephone, String email, String commentaires) {
-    }
-
-    public Societe(String numeroRue, String nomRue, String codePostal, String ville, String raisonSociale, String telephone, String email, String commentaires) {
-    }
-
-    public Societe() {
-
-    }
-
 
     // Getters et Setters
     public int getIdentifiant() {
         return identifiant;
-    }
-
-    public void setIdentifiant(int identifiant) {
-        this.identifiant = identifiant;
     }
 
     public String getRaisonSociale() {
@@ -55,7 +42,9 @@ abstract class Societe {
     }
 
     public void setRaisonSociale(String raisonSociale) {
-        this.raisonSociale = raisonSociale;
+        this.raisonSociale = (raisonSociale == null || raisonSociale.isEmpty())
+                ? "Raison sociale non définie"
+                : raisonSociale;
     }
 
     public Adresse getAdresse() {
@@ -71,7 +60,11 @@ abstract class Societe {
     }
 
     public void setTelephone(String telephone) {
-        this.telephone = telephone;
+        if (telephone == null || !telephone.matches("^((\\+33|0033|0)(6|7)[0-9]{8})$")) {
+            this.telephone = "Non défini";
+        } else {
+            this.telephone = telephone;
+        }
     }
 
     public String getEmail() {
@@ -79,7 +72,11 @@ abstract class Societe {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (email == null || !email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
+            this.email = "Non défini";
+        } else {
+            this.email = email;
+        }
     }
 
     public String getCommentaires() {
@@ -87,14 +84,11 @@ abstract class Societe {
     }
 
     public void setCommentaires(String commentaires) {
-        this.commentaires = commentaires;
+        this.commentaires = (commentaires == null || commentaires.isEmpty())
+                ? "Aucun commentaire"
+                : commentaires;
     }
 
-    // Méthode abstraite
+    // Méthode abstraite pour affichage
     public abstract void afficher();
 }
-
-
-
-
-

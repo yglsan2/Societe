@@ -6,8 +6,10 @@ public class Client extends Societe {
     private final int nombreEmployes;
 
     public Client(String adresse, String raisonSociale, String telephone, String email, String commentaires, long chiffreAffaires, int nombreEmployes) {
-             super(adresse, raisonSociale, telephone, email, commentaires);
+             /*super(adresse, raisonSociale, telephone, email, commentaires);*/
+             super();
 
+             System.out.println("Adresse : " + adresse);
 
 
 
@@ -28,6 +30,7 @@ public class Client extends Societe {
 
 
 
+
     // Getters
     public long getChiffreAffaires() {
         return chiffreAffaires;
@@ -40,6 +43,11 @@ public class Client extends Societe {
     @Override
     public String toString() {
         return super.toString() + ", Chiffre d'Affaires: " + chiffreAffaires + ", Nombre d'Employés: " + nombreEmployes;
+    }
+
+
+    protected void setAdresse(String adresse) {
+
     }
 
     @Override

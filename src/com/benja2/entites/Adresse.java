@@ -11,7 +11,7 @@ public class Adresse {
     // Constructeur
     public Adresse(String numeroRue, String nomRue, String codePostal, String ville) {
 
-        if (!Pattern.matches("\d{5}", codePostal))throw new IllegalArgumentException("code postal invalide");
+        if (!Pattern.matches("\\d{5}", codePostal))throw new IllegalArgumentException("code postal invalide");
 
         this.numeroRue = numeroRue;
         this.nomRue = nomRue;
@@ -57,5 +57,8 @@ public class Adresse {
     public String toString() {
         return numeroRue + " " + nomRue + ", " + codePostal + " " + ville;
     }
+
+
+
 }
 
