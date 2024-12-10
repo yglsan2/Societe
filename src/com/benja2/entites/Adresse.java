@@ -19,6 +19,10 @@ public class Adresse {
         this.ville = ville;
     }
 
+    public Adresse() {
+
+    }
+
     // Getters et Setters
     public String getNumeroRue() {
         return numeroRue;

@@ -1,17 +1,21 @@
 package com.benja2.entites;
+
 import com.benja2.entites.Utilitaires.ImmuInteresse;
+
 import java.time.LocalDate;
 
 public class Prospect extends Societe {
 
     private LocalDate dateProspection;
     private ImmuInteresse interesse;
+    private String commentaire;
 
-    // Constructeur principal
-    public Prospect(String raisonSociale, Adresse adresse, String telephone, String email,
-                    String commentaires, LocalDate dateProspection, ImmuInteresse interesse) {
-        super(raisonSociale, adresse, telephone, email, commentaires);
+    // Constructeur surchargé avec des éléments de l'adresse et autres champs
+    public Prospect(String numeroRue, String nomRue, String codePostal, String ville, String raisonSociale,
+                    String telephone, String email, String commentaire, LocalDate dateProspection, ImmuInteresse interesse) {
+        super(raisonSociale, new Adresse(numeroRue, nomRue, codePostal, ville), telephone, email);
 
+        // Validation des champs spécifiques à Prospect
         if (dateProspection == null) {
             throw new IllegalArgumentException("La date de prospection ne peut pas être nulle.");
         }
@@ -21,47 +25,11 @@ public class Prospect extends Societe {
 
         this.dateProspection = dateProspection;
         this.interesse = interesse;
+        this.commentaire = commentaire;
     }
 
-    // Méthode parseAdresse (optionnelle, utilisée pour convertir une chaîne en objet Adresse)
-    private static Adresse parseAdresse(String adresse) {
-        if (adresse == null || adresse.isBlank()) {
-            throw new IllegalArgumentException("L'adresse ne peut pas être vide.");
-        }
 
-        String[] parts = adresse.split(", ");
-        if (parts.length != 2) {
-            throw new IllegalArgumentException("Adresse invalide. Format attendu : 'numéro rue, code postal ville'.");
-        }
-
-        String[] rueParts = parts[0].split(" ", 2);
-        if (rueParts.length != 2) {
-            throw new IllegalArgumentException("Adresse invalide. Numéro et rue attendus.");
-        }
-
-        String[] codeVilleParts = parts[1].split(" ", 2);
-        if (codeVilleParts.length != 2) {
-            throw new IllegalArgumentException("Adresse invalide. Code postal et ville attendus.");
-        }
-
-        return new Adresse(rueParts[0], rueParts[1], codeVilleParts[0], codeVilleParts[1]);
-    }
-
-    // Constructeur surchargé avec Adresse
-    public Prospect(String numeroRue, String nomRue, String codePostal, String ville, String raisonSociale,
-                    String telephone, String email, String commentaires, LocalDate dateProspection,
-                    ImmuInteresse interesse) {
-        this(   raisonSociale,
-                new Adresse(numeroRue, nomRue, codePostal, ville),
-                telephone,
-                email,
-                commentaires,
-                dateProspection,
-                interesse
-        );
-    }
-
-    // Getters et Setters
+    // Getters et Setters pour les champs supplémentaires
     public LocalDate getDateProspection() {
         return dateProspection;
     }
@@ -84,13 +52,19 @@ public class Prospect extends Societe {
         this.interesse = interesse;
     }
 
-    // Méthode toString
-    @Override
-    public String toString() {
-        return super.toString() + " | Date de prospection: " + dateProspection + " | Intéressé: " + interesse.name();
+    public String getCommentaire() {
+        return commentaire;
     }
 
-    // Méthode afficher
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Date de prospection: " + dateProspection + " | Intéressé: " + interesse.name() + " | Commentaire: " + commentaire;
+    }
+
     @Override
     public void afficher() {
         System.out.println(this);

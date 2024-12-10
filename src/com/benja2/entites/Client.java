@@ -1,3 +1,4 @@
+
 package com.benja2.entites;
 
 public class Client extends Societe {
@@ -5,8 +6,8 @@ public class Client extends Societe {
     private final int nombreEmployes;
 
     // Constructeur principal
-    public Client(String adresse, String raisonSociale, String telephone, String email, String commentaires, long chiffreAffaires, int nombreEmployes) {
-        super();
+    public Client(String raisonSociale, Adresse adresse, String telephone, String email, long chiffreAffaires, int nombreEmployes) {
+        super(raisonSociale, adresse, telephone, email);
 
         if (chiffreAffaires <= 200) {
             throw new IllegalArgumentException("Le chiffre d'affaires doit être supérieur à 200.");
@@ -19,14 +20,9 @@ public class Client extends Societe {
         this.nombreEmployes = nombreEmployes;
     }
 
-    // Constructeur surchargé avec valeurs par défaut pour certains champs
-    public Client(String raisonSociale, String telephone, long chiffreAffaires, int nombreEmployes) {
-        this("Adresse non définie", raisonSociale, telephone, "Email non défini", "Aucun commentaire", chiffreAffaires, nombreEmployes);
-    }
-
-    // Constructeur surchargé pour un client sans téléphone ni email
-    public Client(String raisonSociale, long chiffreAffaires, int nombreEmployes) {
-        this(raisonSociale, "Téléphone non défini", chiffreAffaires, nombreEmployes);
+    // Constructeur surchargé avec valeurs par défaut
+    public Client(String number, String rueDesRamen, String raisonSociale, String telephone, long chiffreAffaires, int nombreEmployes) {
+        this(raisonSociale, new Adresse(), telephone, "email@duclient.com", chiffreAffaires, nombreEmployes);
     }
 
     // Getters
@@ -41,15 +37,7 @@ public class Client extends Societe {
     // Méthode afficher
     @Override
     public void afficher() {
-        System.out.println("Client :");
-        System.out.println("Identifiant : " + getIdentifiant());
-        System.out.println("Raison Sociale : " + getRaisonSociale());
-        System.out.println("Adresse : " + getAdresse());
-        System.out.println("Téléphone : " + getTelephone());
-        System.out.println("Email : " + getEmail());
-        System.out.println("Commentaires : " + getCommentaires());
-        System.out.println("Chiffre d'Affaires : " + chiffreAffaires);
-        System.out.println("Nombre d'Employés : " + nombreEmployes);
+
     }
 
     // Méthode toString enrichie
@@ -58,27 +46,4 @@ public class Client extends Societe {
         return super.toString() + ", Chiffre d'Affaires : " + chiffreAffaires + ", Nombre d'Employés : " + nombreEmployes;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
