@@ -5,10 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-
-
-
-
 public class ClientTest {
 
     public static void main(String[] args) {

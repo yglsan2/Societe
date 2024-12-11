@@ -15,10 +15,12 @@ public class PatternTest {
 
             class Patterns {
                 // RegEx pour les emails
+
                 public static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
                 // RegEx pour la date au format jj/MM/aaaa
+
                 public static final String DATE_PATTERN = "dd/MM/yyyy";
 
                 // RegEx pour le téléphone
