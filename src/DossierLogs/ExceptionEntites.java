@@ -1,5 +1,7 @@
 package DossierLogs;
 
+
+//JD
 /**
  * Exception personnalisée pour la gestion des erreurs liées aux entités.
  */

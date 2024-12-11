@@ -15,7 +15,7 @@ import java.util.List;
 
     public class Accueil extends JFrame {
 
-        private final List<Societe> societes;
+        private final List<Societe> societe;
 
         public Accueil() {
             // Initialisation de la fenêtre
@@ -24,10 +24,10 @@ import java.util.List;
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setLocationRelativeTo(null); // Centrer la fenêtre
 
-            // Créer des sociétés pour exemple
-            societes = new ArrayList<>();
-            societes.add(new Prospect("24", "Rue des Ramen", "54000", "Nancy", "Prospect 1", "0123456789", "prospect1@example.com", "Premier contact", LocalDate.now(), ImmuInteresse.OUI));
-            societes.add(new Prospect("46", "Rue de la Ville", "75001", "Paris", "Prospect 2", "0987654321", "prospect2@example.com", "Deuxième contact", LocalDate.now(), ImmuInteresse.NON));
+            // Création de societé
+            societe = new ArrayList<>();
+            societe.add(new Prospect("24", "Rue des Boufflers", "54000", "Nancy", "Prospect 1", "0123456789", "prospect1@example.com", "Premier contact", LocalDate.now(), ImmuInteresse.OUI));
+            societe.add(new Prospect("42", "Rue de Siam", "29000", "Brest", "Prospect 2", "0987654321", "prospect2@example.com", "Deuxième contact", LocalDate.now(), ImmuInteresse.NON));
 
             // Panel principal
             JPanel panel = new JPanel();
@@ -35,7 +35,7 @@ import java.util.List;
 
             // Liste des sociétés
             DefaultListModel<String> listModel = new DefaultListModel<>();
-            for (Societe societe : societes) {
+            for (Societe societe : societe) {
                 listModel.addElement(societe.getRaisonSociale());
             }
 
@@ -44,23 +44,28 @@ import java.util.List;
             panel.add(scrollPane, BorderLayout.CENTER);
 
             // Bouton de détails
+            JButton buttonDetails = createDetailsButton(listSocietes);
+
+            panel.add(buttonDetails, BorderLayout.SOUTH);
+
+            // Ajouter le panel à la fenêtre
+            this.add(panel);
+        }
+
+        private JButton createDetailsButton(JList<String> listSocietes) {
             JButton buttonDetails = new JButton("Voir les détails");
             buttonDetails.addActionListener(e -> {   // utilisation de lambda pour simplification de code
                 // Récupérer le prospect sélectionné
                 int selectedIndex = listSocietes.getSelectedIndex();
                 if (selectedIndex != -1) {
-                    Societe selectedSociete = societes.get(selectedIndex);
+                    Societe selectedSociete = societe.get(selectedIndex);
                     // Afficher les détails dans une boîte de dialogue
                     JOptionPane.showMessageDialog(Accueil.this, selectedSociete.toString(), "Détails de " + selectedSociete.getRaisonSociale(), JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(Accueil.this, "Veuillez sélectionner une société.", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             });
-
-            panel.add(buttonDetails, BorderLayout.SOUTH);
-
-            // Ajouter le panel à la fenêtre
-            this.add(panel);
+            return buttonDetails;
         }
 
         public static void main(String[] args) {
