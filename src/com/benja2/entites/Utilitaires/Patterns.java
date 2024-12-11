@@ -15,5 +15,8 @@ class PatternsTest {
 
         // RegEx pour la date au format jj/MM/aaaa
         public static final String DATE_PATTERN = "dd/MM/yyyy";
+
+        // RegEx pour le téléphone
+        public static final String TELEPHONE_PATTERN = "\"^\\\\+?[0-9]+$\"";
     }
 }
