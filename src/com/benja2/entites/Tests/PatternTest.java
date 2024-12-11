@@ -1,4 +1,4 @@
-package com.benja2.entites.Tests;
+package com.benja2.entites.Tests; // en construction, à modifier
 
 import java.util.regex.Pattern;
 
