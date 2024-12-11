@@ -1,6 +1,6 @@
 
 
-package com.benja2.entites.Utilitaires;
+package com.benja2.entites.Tests;
 
 import com.benja2.entites.Prospect;
 import com.benja2.entites.Utilitaires.ImmuInteresse;

@@ -1,4 +1,4 @@
-package com.benja2.entites.Utilitaires;
+package com.benja2.entites.Tests;
 import com.benja2.entites.Client;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
