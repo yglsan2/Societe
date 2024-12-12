@@ -1,80 +1,148 @@
 package com.benja2.entites;
-import com.benja2.entites.Utilitaires.ImmuInteresse;
+
 import java.time.LocalDate;
+import Utilitaires.*;
+import com.benja2.entites.Utilitaires.ImmuInteresse;
 
-    public class Prospect extends Societe {
+/**
+ * Classe représentant un Prospect, qui hérite de la classe Societe.
+ * Un prospect inclut des informations sur la date de prospection
+ * et s'il est potentiellement intéressé.
+ */
+public class Prospect extends Societe {
 
-        private LocalDate dateProspection;
-        private ImmuInteresse interesse;
-        private String commentaire;
+    private static int compteur = 0; // Compteur pour générer des identifiants uniques
+    private LocalDate dateProspection; // Date de prospection du prospect
+    private String prospectInteresse; // Indique si le prospect est intéressé ou non
 
-        // Constructeur principal
-        public Prospect(String numeroRue, String nomRue, String codePostal, String ville, String raisonSociale,
-                        String telephone, String email, String commentaire, LocalDate dateProspection, ImmuInteresse interesse) {
-            super(raisonSociale, new Adresse(numeroRue, nomRue, codePostal, ville), telephone, email);
+    /**
+     * Constructeur principal avec validation des paramètres.
+     *
+     * @param raisonSociale      La raison sociale de la société.
+     * @param adresse            L'adresse de la société.
+     * @param telephone          Le numéro de téléphone.
+     * @param email              L'adresse email.
+     * @param commentaire        Les commentaires associés.
+     * @param dateProspection    La date de prospection.
+     * @param prospectInteresse  Indique si le prospect est intéressé.
+     */
+    public Prospect(String raisonSociale, Adresse adresse, String telephone, String email,
+                    String commentaire, LocalDate dateProspection, String prospectInteresse) {
+        super(++compteur, raisonSociale, adresse, telephone, email, commentaire);
 
-            // Validation des champs spécifiques à Prospect
+        try {
             if (dateProspection == null) {
-                throw new IllegalArgumentException("La date de prospection ne peut pas être nulle.");
-            }
-            if (interesse == null) {
-                throw new IllegalArgumentException("L'intérêt ne peut pas être nul.");
-            }
-
-            this.dateProspection = dateProspection;
-            this.interesse = interesse;
-            this.commentaire = commentaire != null ? commentaire : ""; // Evite un commentaire null
-        }
-
-        // Getters
-        public LocalDate getDateProspection() {
-            return dateProspection;
-        }
-
-        public ImmuInteresse getInteresse() {
-            return interesse;
-        }
-
-        public String getCommentaire() {
-            return commentaire;
-        }
-
-        // Setters
-        public void setDateProspection(LocalDate dateProspection) {
-            if (dateProspection == null) {
-                throw new IllegalArgumentException("La date de prospection ne peut pas être nulle.");
+                throw new ExceptionClass("La date de prospection ne peut pas être null.");
             }
             this.dateProspection = dateProspection;
-        }
 
-        public void setInteresse(ImmuInteresse interesse) {
-            if (interesse == null) {
-                throw new IllegalArgumentException("L'intérêt ne peut pas être nul.");
+            if (prospectInteresse == null || prospectInteresse.trim().isEmpty()) {
+                throw new ExceptionClass("Le champ 'prospectIntéressé' ne peut pas être vide ou null.");
             }
-            this.interesse = interesse;
-        }
+            this.prospectInteresse = prospectInteresse;
 
-        public void setCommentaire(String commentaire) {
-            this.commentaire = commentaire != null ? commentaire : ""; // Prévenir un commentaire null
-        }
-
-        // Méthode toString enrichie
-        @Override
-        public String toString() {
-            return super.toString() +
-                    " | Date de prospection: " + dateProspection +
-                    " | Intéressé: " + interesse.name() +
-                    " | Commentaire: " + (commentaire.isEmpty() ? "Aucun" : commentaire);
-        }
-
-        // Méthode d'affichage spécifique
-        @Override
-        public void afficher() {
-            System.out.println(this);
+        } catch (ExceptionClass e) {
+            System.err.println("Erreur : ExceptionClass rencontrée." + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Erreur : Exception générale levée." + e.getMessage());
+        } finally {
+            System.out.println("Validation terminée pour le constructeur de Prospect.");
         }
     }
 
+    public Prospect(String number, String rueDesBoufflers, String number1, String nancy, String commentaire, String number2, String mail, String premierContact, LocalDate now, ImmuInteresse immuInteresse) {
+    }
 
+    /**
+     * Getter pour la date de prospection.
+     *
+     * @return La date de prospection.
+     */
+    public LocalDate getDateProspection() {
+        return dateProspection;
+    }
 
+    /**
+     * Setter pour la date de prospection avec validation.
+     *
+     * @param dateProspection    La date de prospection à définir.
+     */
+    public void setDateProspection(LocalDate dateProspection) {
+        try {
+            if (dateProspection == null) {
+                throw new ExceptionClass("La date de prospection ne peut pas être null.");
+            }
+            this.dateProspection = dateProspection;
 
+        } catch (ExceptionClass e) {
+            System.err.println("Erreur : ExceptionClass rencontrée dans setDateProspection." + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Erreur : Exception générale dans setDateProspection." + e.getMessage());
+        } finally {
+            System.out.println("Exécution terminée pour setDateProspection.");
+        }
+    }
 
+    /**
+     * Getter pour savoir si le prospect est intéressé.
+     *
+     * @return Le statut du prospect (intéressé ou non).
+     */
+    public String getProspectInteresse() {
+        return prospectInteresse;
+    }
+
+    /**
+     * Setter pour le champ 'prospectInteresse' avec validation.
+     *
+     * @param prospectInteresse   Le statut à définir.
+     */
+    public void setProspectInteresse(String prospectInteresse) {
+        try {
+            if (prospectInteresse == null || prospectInteresse.trim().isEmpty()) {
+                throw new ExceptionClass("Le champ 'prospectIntéressé' ne peut pas être vide ou null.");
+            }
+            this.prospectInteresse = prospectInteresse;
+
+        } catch (ExceptionClass e) {
+            System.err.println("Erreur : ExceptionClass rencontrée dans setProspectInteresse." + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Erreur : Exception générale dans setProspectInteresse." + e.getMessage());
+        } finally {
+            System.out.println("Exécution terminée pour setProspectInteresse.");
+        }
+    }
+
+    /**
+     * Redéfinition de la méthode toString.
+     * <p>
+     * @ * @return La représentation sous forme de chaîne de caractères de l'objet Prospect.
+     */
+    @Override
+    public String toString() {
+        return "Prospect{" +
+                "compteur=" + compteur +
+                ", dateProspection=" + dateProspection +
+                ", prospectInteresse='" + prospectInteresse + '\'' +
+                '}';
+    }
+
+    @Override
+    public void afficher() {
+
+    }
+
+    /**
+     * Méthode pour afficher les informations du prospect.
+     */
+    public void afficherProspect() {
+        System.out.println("Informations du prospect :");
+        System.out.println("Raison sociale : " + getRaisonSociale());
+        System.out.println("Adresse : " + getAdresse());
+        System.out.println("Téléphone : " + getTelephone());
+        System.out.println("Email : " + getEmail());
+        System.out.println("Commentaire : " + getCommentaire());
+        System.out.println("Date de prospection : " + getDateProspection());
+        System.out.println("Prospect intéressé : " + getProspectInteresse());
+    }
+}

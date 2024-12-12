@@ -1,4 +1,4 @@
-package com.benja2.entites.Utilitaires;
+package Utilitaires;
 
 import com.benja2.entites.Prospect;
 
@@ -12,10 +12,11 @@ public class ArrayListProspects {
         this.prospects = new ArrayList<>();
     }
 
-        private void addProspect(Prospect prospect) {
-            prospects.add(prospect);
+    public static void addProspect(Prospect prospect1) {
+    }
 
-
+    public void ajouterProspect(Prospect prospect) {
+        prospects.add(prospect);
     }
 
     public void supprimerProspect(Prospect prospect) {
@@ -32,3 +33,4 @@ public class ArrayListProspects {
         }
     }
 }
+

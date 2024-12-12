@@ -1,35 +1,52 @@
 
 package com.benja2.entites;
+import Utilitaires.RegexPatt.*;
+import com.benja2.entites.*;
+
+import static Utilitaires.RegexPatt.REGEX_EMAIL;
+import static Utilitaires.RegexPatt.REGEX_TELEPHONE;
+
+
 
 public abstract class Societe {
 
-    // Attributs
-    private static int compteurId = 1;
-    private final int identifiant;
-    private String raisonSociale;
-    private Adresse adresse;
-    private String telephone;
-    private String email;
-    private String commentaires;
+    // Attributs en protected pour faciliter l’utilisation des setters, getters par les classes héritières.
+    protected final int identifiant; /*déclaration en final pour garantir que ça ne changera pas, et donc pas de setter. */
+    protected String raisonSociale;
+    protected String telephone;
+    protected String email;
+    protected Adresse adresse;
+    protected String commentaire;
 
-    // Constructeur par défaut
-    public Societe() {
-        this.identifiant = compteurId++;
-        this.raisonSociale = "Raison sociale non définie";
-        this.adresse = null; // Une adresse par défaut pourrait aussi être ajoutée
-        this.telephone = "Non défini";
-        this.email = "Non défini";
-        this.commentaires = "";
+    // Constructeur vide
+    public Societe(String raisonSociale, Adresse adresse, String telephone, String email) {
+        this(0, raisonSociale, adresse, telephone, email, "");
     }
 
-    // Constructeur avec paramètres
-    public Societe(String raisonSociale, Adresse adresse, String telephone, String email, String commentaires) {
-        this.identifiant = compteurId++;
-        this.raisonSociale = raisonSociale;
-        this.adresse = adresse;
-        setTelephone(telephone);
-        setEmail(email);
-        this.commentaires = commentaires;
+    // Constructeur avec paramètres (Surcharge)
+    public Societe(int identifiant, String raisonSociale, Adresse adresse, String telephone, String email, String commentaire) {
+        this.identifiant = identifiant;
+        try {
+            // Définition des valeurs avec les setters
+            setRaisonSociale(raisonSociale);
+            setTelephone(telephone);
+            setEmail(email);
+            setAdresse(adresse);
+            setCommentaire(commentaire);
+        } catch (IllegalArgumentException e) {
+            // Gestion des erreurs légères (validation de données)
+            System.err.println("Erreur de validation des données : " + e.getMessage());
+        } catch (Exception e) {
+            // Gestion de l'exception générale (non prévue)
+            System.err.println("Erreur inattendue : " + e.getMessage());
+        } finally {
+            // Log d'information et nettoyage
+            System.out.println("[LOG] Tentative de création d'une société avec l'identifiant : " + identifiant);
+        }
+    }
+
+    protected Societe() {
+        identifiant = 0;
     }
 
     // Getters et Setters
@@ -37,34 +54,23 @@ public abstract class Societe {
         return identifiant;
     }
 
-    public String getRaisonSociale() {
-        return raisonSociale;
-    }
-
-    public void setRaisonSociale(String raisonSociale) {
-        this.raisonSociale = (raisonSociale == null || raisonSociale.isEmpty())
-                ? "Raison sociale non définie"
-                : raisonSociale;
-    }
-
     public Adresse getAdresse() {
         return adresse;
     }
 
     public void setAdresse(Adresse adresse) {
+        if (adresse == null) {
+            throw new IllegalArgumentException("L'adresse ne peut pas être nulle.");
+        }
         this.adresse = adresse;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getCommentaire() {
+        return commentaire;
     }
 
-    public void setTelephone(String telephone) {
-        if (telephone == null || !telephone.matches("^((\\+33|0033|0)(6|7)[0-9]{8})$")) {
-            this.telephone = "Non défini";
-        } else {
-            this.telephone = telephone;
-        }
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public String getEmail() {
@@ -72,23 +78,49 @@ public abstract class Societe {
     }
 
     public void setEmail(String email) {
-        if (email == null || !email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
-            this.email = "Non défini";
-        } else {
-            this.email = email;
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Veuillez entrer un email.");
         }
+        if (!email.matches(String.valueOf(REGEX_EMAIL))) {
+            throw new IllegalArgumentException("L'email est invalide.");
+        }
+        this.email = email;
     }
 
-    public String getCommentaires() {
-        return commentaires;
+    public String getRaisonSociale() {
+        return raisonSociale;
     }
 
-    public void setCommentaires(String commentaires) {
-        this.commentaires = (commentaires == null || commentaires.isEmpty())
-                ? "Aucun commentaire"
-                : commentaires;
+    public void setRaisonSociale(String raisonSociale) {
+        if (raisonSociale == null || raisonSociale.trim().isEmpty()) {
+            throw new IllegalArgumentException("La raison sociale ne peut pas être vide.");
+        }
+        this.raisonSociale = raisonSociale;
     }
 
-    // Méthode abstraite pour affichage
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        if (!telephone.matches(String.valueOf(REGEX_TELEPHONE))) {
+            throw new IllegalArgumentException("Le numéro de téléphone est invalide.");
+        }
+        this.telephone = telephone;
+    }
+
+    @Override
+    public String toString() {
+        return "Societe{" +
+                "identifiant=" + identifiant +
+                ", raisonSociale='" + raisonSociale + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", adresse=" + adresse +
+                ", commentaire='" + commentaire + '\'' +
+                '}';
+    }
+
+    // Méthode afficher
     public abstract void afficher();
 }

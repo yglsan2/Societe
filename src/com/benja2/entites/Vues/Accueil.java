@@ -1,6 +1,9 @@
 package com.benja2.entites.Vues;
 import javax.swing.*;
 import java.awt.*;
+
+import Utilitaires.ExceptionClass;
+import com.benja2.entites.Client;
 import com.benja2.entites.Prospect;
 import com.benja2.entites.Societe;
 import com.benja2.entites.Utilitaires.ImmuInteresse;
